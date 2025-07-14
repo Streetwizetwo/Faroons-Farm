@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faroons Farm - Quality Livestock & Farm Products</title>
+    <style>
+        :root {
+            --primary-green: #4CAF50;
+            --dark-green: #388E3C;
+            --light-green: #C8E6C9;
+            --accent-yellow: #FFEB3B;
+            --accent-orange: #FF9800;
+            --white: #FFFFFF;
+            --black: #333333;
+            --gray: #757575;
+            --futuristic-blue: #3498DB;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: var(--black);
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 2rem;
+        }
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 600px;
+        }
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            background-color: var(--futuristic-blue);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #2980B9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            margin-left: 1rem;
+        }
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        section {
+            padding: 4rem 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--futuristic-blue);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        .feature-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .feature-card:hover .feature-img img {
+            transform: scale(1.1);
+        }
+        .feature-content {
+            padding: 1.5rem;
+        }
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-green);
+        }
+        /* Livestock Page Styles */
+        .livestock-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--light-green);
+            color: var(--dark-green);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--dark-green);
+            color: var(--white);
+        }
+        .livestock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .livestock-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .livestock-card:hover {
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .livestock-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        .livestock-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .livestock-info {
+            padding: 1.5rem;
+        }
+        .livestock-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-green);
+        }
+        .livestock-info p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--futuristic-blue);
+        }
+        /* Contact Page Styles */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        .contact-info {
+            background-color: var(--light-green);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-green);
+        }
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .contact-icon {
+            margin-right: 1rem;
+            color: var(--futuristic-blue);
+            font-size: 1.2rem;
+        }
+        .contact-form {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        footer {
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--futuristic-blue);
+        }
+        .footer-column ul {
+            list-style: none;
+        }
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        .footer-column ul li a {
+            color: var(--light-green);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-column ul li a:hover {
+            color: var(--futuristic-blue);
+            padding-left: 5px;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background-color: var(--futuristic-blue);
+            transform: translateY(-3px);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        /* Page-specific styles */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src=" https://via.placeholder.com/50x50 " alt="Faroons Farm Logo">
+                <h1>Faroons Farm</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="livestock">Livestock</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="container hero-content">
+                <h2>Quality Livestock From Our Farm To Your Table</h2>
+                <p>At Faroons Farm, we raise healthy, happy animals with sustainable practices that you can trust.</p>
+                <a href="#" class="btn nav-link" data-page="livestock">View Our Livestock</a>
+                <a href="#" class="btn btn-outline nav-link" data-page="contact">Contact Us</a>
+            </div>
+        </div>
+        <div class="container">
+            <section>
+                <div class="section-title">
+                    <h2>Why Choose Faroons Farm?</h2>
+                </div>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Healthy Animals">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Healthy Animals</h3>
+                            <p>Our livestock are raised in spacious, clean environments with proper nutrition and veterinary care to ensure their health and wellbeing.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src=" https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sustainable Farming">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Sustainable Farming</h3>
+                            <p>We practice environmentally responsible farming methods that protect the land and ensure the long-term sustainability of our operations.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-img">
+                            <img src=" https://images.unsplash.com/photo-1516937941344-00b4e0337589?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Local & Fresh">
+                        </div>
+                        <div class="feature-content">
+                            <h3>Local & Fresh</h3>
+                            <p>As a local farm, we deliver the freshest products directly to our customers with minimal transportation and handling.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <!-- Livestock Page -->
+    <section id="livestock" class="page">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Livestock</h2>
+            </div>
+            <div class="livestock-categories">
+                <button class="category-btn active" data-category="all">All Animals</button>
+                <button class="category-btn" data-category="goats">Goats</button>
+                <button class="category-btn" data-category="ox">Oxen</button>
+                <button class="category-btn" data-category="chickens">Chickens</button>
+            </div>
+            <div class="livestock-grid">
+                <!-- Goats -->
+                <div class="livestock-card" data-category="goats">
+                    <div class="livestock-img">
+                        <img src=" https://images.unsplash.com/photo-1557255221-567b14b1e4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Boer Goat">
+                    </div>
+                    <div class="livestock-info">
+                        <h3>Boer Goat</h3>
+                        <p>Premium quality meat goats known for their fast growth rate and excellent carcass qualities.</p>
+                        <div class="price">R4,625 - R7,400</div>
+                    </div>
+                </div>
+                <div class="livestock-card" data-category="goats">
+                    <div class="livestock-img">
+                        <img src=" https://images.unsplash.com/photo-1583845112203-29329902330b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nubian Goat">
+                    </div>
+                    <div class="livestock-info">
+                        <h3>Nubian Goat</h3>
+                        <p>Dual-purpose goats excellent for both milk production and meat, known for their long, pendulous ears.</p>
+                        <div class="price">R3,700 - R6,475</div>
+                    </div>
+                </div>
+                <div class="livestock-card" data-category="goats">
+                    <div class="livestock-img">
+                        <img src=" https://images.unsplash.com/photo-1551981421-5c97f4990a2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Alpine Goat">
+                    </div>
+                    <div class="livestock-info">
+                        <h3>Alpine Goat</h3>
+                        <p>Hardy, adaptable dairy goats that produce high quantities of quality milk with moderate butterfat.</p>
+                        <div class="price">R3,330 - R5,550</div>
+                    </div>
+                </div>
+                <!-- Oxen -->
+                <div class="livestock-card" data-category="ox">
+                    <div class="livestock-img">
+                        <img src=" https://images.unsplash.com/photo-1553284965-5dd8352ff1bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Holstein Ox">
+                    </div>
+                    <div class="livestock-info">
+                        <h3>Holstein Ox</h3>
+                        <p>Large, strong draft animals perfect for farm work, known for their docile temperament.</p>
+                        <div class="price">R14,800 - R22,200</div>
+                    </div>
+                </div>
+                <div class="livestock-card" data-category="ox">
+                    <div class="livestock-img">
+                        <img src=" https://images.unsplash.com/photo-1561731216-c53c3546320e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Jersey Ox">
+                    </div>
+                    <div class="livestock-info">
+                        <h3>Jersey Ox</h3>
+                        <p>Smaller but efficient draft animals, easier to handle than larger breeds but still strong workers.</p>
+                        <div class="price">R11,100 - R16,650</div>
+                    </div>
+                </div>
+                <div class="livestock-card" data-category="ox">
+                    <div class="livestock-img">
+                        <img src=" https://images.unsplash.com/photo-1561731216-c53c3546320e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hereford Ox">
+                    </div>
+                    <div class="livestock-info">
+                        <h3>Hereford Ox</h3>
+                        <p>Muscular, hardy animals excellent for both draft work and meat production.</p>
+                        <div class="price">R12,950 - R18,500</div>
+                    </div>
+                </div>
+                <!-- Chickens -->
+                <div class="livestock-card" data-category="chickens">
+                    <div class="livestock-img">
+                        <img src=" https://images.unsplash.com/photo-1563281578-2607a597a9e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Rhode Island Red">
+                    </div>
+                    <div class="livestock-info">
+                        <h3>Rhode Island Red</h3>
+                        <p>Excellent dual-purpose birds known for both egg production and meat quality.</p>
+                        <div class="price">R278 - R463 each</div>
+                    </div>
+                </div>
+                <div class="livestock-card" data-category="chickens">
+                    <div class="livestock-img">
+                        <img src=" https://images.unsplash.com/photo-1563281578-2607a597a9e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Plymouth Rock">
+                    </div>
+                    <div class="livestock-info">
+                        <h3>Plymouth Rock</h3>
+                        <p>Hardy, docile birds that are great layers and have good meat qualities.</p>
+                        <div class="price">R222 - R370 each</div>
+                    </div>
+                </div>
+                <div class="livestock-card" data-category="chickens">
+                    <div class="livestock-img">
+                        <img src=" https://images.unsplash.com/photo-1563281578-2607a597a9e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Leghorn">
+                    </div>
+                    <div class="livestock-info">
+                        <h3>Leghorn</h3>
+                        <p>Excellent white egg layers known for their productivity and efficiency.</p>
+                        <div class="price">R185 - R333 each</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Page -->
+    <section id="contact" class="page">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h4>Address</h4>
+                                <p>Nonoti Farm</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>067 1678 472</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@faroonsfarm.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <div>
+                                <h4>Hours</h4>
+                                <p>Monday - Saturday: 8:00 AM - 6:00 PM</p>
+                                <p>Sunday: 10:00 AM - 4:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                        <a href="#" aria-label="YouTube">▶️</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Faroons Farm</h3>
+                    <p>Family-owned and operated since 1985, we're committed to sustainable farming practices and providing high-quality livestock to our community.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="livestock">Livestock</a></li>
+                        <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                        <li><a href="#">Farm Tours</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Livestock</h3>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="livestock">Goats</a></li>
+                        <li><a href="#" class="nav-link" data-page="livestock">Oxen</a></li>
+                        <li><a href="#" class="nav-link" data-page="livestock">Chickens</a></li>
+                        <li><a href="#">Eggs</a></li>
+                        <li><a href="#">Dairy Products</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for updates on new livestock arrivals, special offers, and farm events.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" class="form-control">
+                        </div>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Faroons Farm. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Simple page navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Hide all pages
+                    document.querySelectorAll('.page').forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    // Show selected page
+                    const pageId = this.getAttribute('data-page');
+                    document.getElementById(pageId).classList.add('active');
+                    // Update active nav link styling
+                    navLinks.forEach(navLink => {
+                        navLink.style.backgroundColor = '';
+                    });
+                    this.style.backgroundColor = 'rgba(255,255,255,0.2)';
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                });
+            });
+            // Livestock category filtering
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            const livestockCards = document.querySelectorAll('.livestock-card');
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active category button
+                    categoryBtns.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    const category = this.getAttribute('data-category');
+                    // Filter livestock cards
+                    livestockCards.forEach(card => {
+                        if (category === 'all' || card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
